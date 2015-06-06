@@ -47,8 +47,8 @@ class GameScene: SKScene {
     override func update(currentTime: CFTimeInterval) {
         bird.update()
     }
-    
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         switch touches.count {
             case 1: bird.flap()
             default: shoot()
@@ -65,9 +65,9 @@ extension GameScene: SKPhysicsContactDelegate {
         case BodyType.pipe.rawValue |  BodyType.bomb.rawValue:
             println("Contact with a bomb")
             if contact.bodyA.categoryBitMask == BodyType.pipe.rawValue {
-                explode(pipe: contact.bodyA.node as SKSpriteNode)
+                explode(pipe: contact.bodyA.node as! SKSpriteNode)
             } else {
-                explode(pipe: contact.bodyB.node as SKSpriteNode)
+                explode(pipe: contact.bodyB.node as! SKSpriteNode)
             }
         case BodyType.pipe.rawValue |  BodyType.bird.rawValue:
             println("Contact with a pipe")

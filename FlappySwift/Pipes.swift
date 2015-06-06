@@ -47,7 +47,7 @@ extension Pipes : Startable {
         parentNode.removeActionForKey(Pipes.createActionKey)
         
         let pipeNodes = parentNode.children.filter { (node: AnyObject?) -> Bool in
-             (node as SKNode).name == PipePair.kind
+             (node as! SKNode).name == PipePair.kind
         }
         for pipe in pipeNodes {
             pipe.removeAllActions()

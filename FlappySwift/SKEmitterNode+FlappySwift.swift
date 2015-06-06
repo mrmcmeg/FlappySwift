@@ -11,13 +11,13 @@ import SpriteKit
 extension SKEmitterNode {
     class func emitterNodeWithName(name : NSString) -> SKEmitterNode
     {
-        let path = NSBundle.mainBundle().pathForResource(name, ofType: "sks")
+        let path = NSBundle.mainBundle().pathForResource(name as String, ofType: "sks")
         
         var sceneData = NSData(contentsOfFile: path!, options: .DataReadingMappedIfSafe, error: nil)
         var archiver = NSKeyedUnarchiver(forReadingWithData: sceneData!)
         
         archiver.setClass(SKEmitterNode.self, forClassName: "SKEditorScene")
-        let node = archiver.decodeObjectForKey(NSKeyedArchiveRootObjectKey) as SKEmitterNode?
+        let node = archiver.decodeObjectForKey(NSKeyedArchiveRootObjectKey) as! SKEmitterNode?
         archiver.finishDecoding()
         return node!
     }
